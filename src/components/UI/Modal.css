@@ -1,0 +1,39 @@
+.modal {
+	position: fixed;
+	top: 30vh;
+	left: 30%;
+	width: 40%;
+	z-index: 100;
+	border-radius: 15px;
+	background: #222222;
+	border: 2px solid red;
+}
+header {
+	color: red;
+	margin-top: 10px;
+	background: none;
+	height: 30px;
+	display: flex;
+	align-items: center;
+	padding-left: 20px;
+}
+.div {
+	height: 70px;
+	padding: 20px;
+	color: red;
+}
+footer {
+	height: 30px;
+	padding: 20px;
+	display: flex;
+	justify-content: end;
+}
+footer .btn {
+	width: 150px;
+	height: 30px;
+	border-radius: 5px;
+	border: none;
+	border: 2px solid red;
+	background: #222222;
+	color: red;
+}
