@@ -1,15 +1,17 @@
-import React from 'react'
+import React, { useContext } from 'react'
 import './ToDos.css'
 import Card from './UI/Card'
 import Button from './UI/Button'
+import { TodoContext } from '../store/TodoContext'
 
-const Todos = ({ array, setArray }) => {
+const Todos = () => {
+	const ctxData = useContext(TodoContext)
 	const deleteHandler = (e) => {
-		setArray(array.filter((el) => el.id !== e.target.id))
+		ctxData.setData(ctxData.data.filter((el) => el.id !== e.target.id))
 	}
 	const checkBoxHendler = (e) => {
-		setArray(
-			array.map((el) => {
+		ctxData.setData(
+			ctxData.data.map((el) => {
 				if (el.id === e.target.id) {
 					el.completed = !el.completed
 				}
@@ -21,17 +23,17 @@ const Todos = ({ array, setArray }) => {
 	return (
 		<>
 			<Card>
-				{array.map((el) => (
+				{ctxData.data.map((el) => (
 					<div className='card' key={el.id}>
 						<div>
-							<label class='switch'>
+							<label className='switch'>
 								<input
 									onClick={checkBoxHendler}
-									checked={el.completed}
+									defaultChecked={el.completed}
 									type='checkbox'
 									id={el.id}
 								/>
-								<span class='slider'></span>
+								<span className='slider'></span>
 							</label>
 						</div>
 

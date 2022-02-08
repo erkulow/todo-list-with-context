@@ -1,14 +1,15 @@
-import React, { useReducer } from 'react'
+import React, { useContext, useReducer } from 'react'
 import './AddToDo.css'
 import Modal from './UI/Modal'
 import Button from './UI/Button'
 import Card from './UI/Card'
+import { TodoContext } from '../store/TodoContext'
 
 const taskReduser = (state, action) => {
 	if (action.type === 'INPUT_TASK') {
 		return {
 			value: action.value,
-			date: new Date().toLocaleString(),
+			date: new Date().toLocaleDateString(),
 			isValid: null,
 		}
 	}
@@ -32,7 +33,8 @@ const taskReduser = (state, action) => {
 	}
 }
 
-const AddToDo = ({ getValueHandler }) => {
+const AddToDo = () => {
+	const ctxData = useContext(TodoContext)
 	const [task, dispatchTask] = useReducer(taskReduser, {
 		value: '',
 		date: '',
@@ -55,7 +57,7 @@ const AddToDo = ({ getValueHandler }) => {
 			completed: false,
 		}
 
-		getValueHandler(newObject)
+		ctxData.getValueHandler(newObject)
 		dispatchTask({ type: 'MODAL_OK' })
 	}
 	const clickHandler = (e) => {
@@ -74,7 +76,7 @@ const AddToDo = ({ getValueHandler }) => {
 							className='form__field'
 							placeholder='Text...'
 						/>
-						<label for='name' className='form__label'>
+						<label htmlFor='name' className='form__label'>
 							Text...
 						</label>
 					</div>
